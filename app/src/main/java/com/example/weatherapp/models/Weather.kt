@@ -37,10 +37,21 @@ data class Forecast (
 
 data class ForecastDay (
     val date: String,
-    val day: Day
+    val day: Day,
+    @SerializedName("hour") val hours: List<Hour>
 )
 
 data class Day (
     @SerializedName("maxtemp_c") val maxTemp: Float,
     @SerializedName("mintemp_c") val minTemp: Float
+)
+
+data class Hour(
+    @SerializedName("time_epoch") val epoch: Long,
+    val time: String,
+    @SerializedName("temp_c") val temperature: Float,
+    @SerializedName("wind_kph") val windSpeed: Float,
+    @SerializedName("wind_dir") val windDirection: String,
+    @SerializedName("feelslike_c") val feelsLike: Float,
+    val condition: Condition
 )
